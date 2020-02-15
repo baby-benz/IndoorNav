@@ -1,0 +1,22 @@
+#circle {
+    width: 120px;
+    height: 120px;
+    background: lightcoral;
+    position: relative;
+    -moz-border-radius: 60px;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+}
+
+#header {
+    height: 90px;
+    background: rebeccapurple;
+}
+
+body {
+    background-image: url("../img/forMainGame.jpg");
+}
+
+#but1 {
+    display: none;
+}
