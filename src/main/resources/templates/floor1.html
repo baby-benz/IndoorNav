@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<script src="/static/js/changepage.js" th:src="@{/js/changepage.js}"></script>
+    <script src="/static/js/drawline.js" th:src="@{/js/drawline.js}"></script>
 	<script type="text/javascript" src="/static/jquery/jquery-3.3.1.min.js"
 			th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
 	<script type="text/javascript" src="/static/jquery/jquery-ui.js" th:src="@{/jquery/jquery-ui.js}"></script>
-    <meta charset="UTF-8">
     <title>floor1</title>
 	<style>
 		.fbutton {
@@ -23,7 +23,7 @@
 	</style>
 </head>
 <body>
-<button class="fbutton" id="floor1" onclick="changePage()">
+<button class="fbutton" id="floor1" onclick="drawRoute()">
 	1 Этаж
 </button>
 <button class="fbutton" id="floor3" onclick="changePage()">
@@ -32,6 +32,9 @@
 <button class="fbutton" id="room106" onclick="changePage()">
 	106 кабинет
 </button>
+Начальная точка: <input type="text" class="search" id="start">
+Конечная точка: <input type="text" class="search" id="finish">
+<button onclick="sendInfo()">Искать</button>
 <svg width="1920" height="1080">
     <?xml version="1.0" encoding="utf-8"?>
     <!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -723,47 +726,66 @@
 
 		<rect x="443" y="496.7" transform="matrix(6.123234e-17 -1 1 6.123234e-17 -26.7969 968.5303)" class="st3" width="55.8" height="1.8"/>
 
-        <circle class="st13" r="5" cx="460" cy="230" />
-        <circle class="st13" r="5" cx="460" cy="260" />
-        <circle class="st13" r="5" cx="460" cy="290" />
-        <circle class="st13" r="5" cx="460" cy="320" />
-        <circle class="st13" r="5" cx="460" cy="350" />
-        <circle class="st13" r="5" cx="460" cy="380" />
-        <circle class="st13" r="5" cx="460" cy="410" />
-        <circle class="st13" r="5" cx="460" cy="440" />
-        <circle class="st13" r="5" cx="460" cy="470" />
+        <circle class="st13" r="5" cx="465" cy="230" />
+        <circle class="st13" r="5" cx="430" cy="270" />
+        <circle class="st13" r="5" cx="465" cy="270" />
+        <circle class="st13" r="5" cx="510" cy="270" />
+        <circle class="st13" r="5" cx="460" cy="300" />
+        <circle class="st13" r="5" cx="435" cy="337" />
+        <circle class="st13" r="5" cx="475" cy="320" />
+        <circle class="st13" r="5" cx="475" cy="350" />
+        <circle class="st13" r="5" cx="460" cy="370" />
+        <circle class="st13" r="5" cx="438" cy="400" />
+        <circle class="st13" r="5" cx="470" cy="400" />
+        <circle class="st13" r="5" cx="430" cy="465" />
+        <circle class="st13" r="5" cx="460" cy="465" />
+        <circle class="st13" r="5" cx="470" cy="465" />
         <circle class="st13" r="5" cx="460" cy="500" />
-        <circle class="st13" r="5" cx="460" cy="500" />
+        <circle class="st13" r="5" cx="440" cy="530" />
+        <circle class="st13" r="5" cx="470" cy="530" />
         <circle class="st13" r="5" cx="460" cy="530" />
         <circle class="st13" r="5" cx="460" cy="560" />
         <circle class="st13" r="5" cx="460" cy="590" />
+        <circle class="st13" r="5" cx="460" cy="600" />
+        <circle class="st13" r="5" cx="440" cy="600" />
         <circle class="st13" r="5" cx="460" cy="620" />
-        <circle class="st13" r="5" cx="460" cy="650" />
+        <circle class="st13" r="5" cx="470" cy="640" />
+        <circle class="st13" r="5" cx="460" cy="640" />
+        <circle class="st13" r="5" cx="470" cy="640" />
+        <circle class="st13" r="5" cx="440" cy="640" />
+        <circle class="st13" r="5" cx="460" cy="640" />
         <circle class="st13" r="5" cx="460" cy="680" />
-        <circle class="st13" r="5" cx="460" cy="710" />
         <circle class="st13" r="5" cx="460" cy="740" />
+        <circle class="st13" r="5" cx="470" cy="740" />
+        <circle class="st13" r="5" cx="440" cy="750" />
+        <circle class="st13" r="5" cx="460" cy="750" />
         <circle class="st13" r="5" cx="460" cy="770" />
         <circle class="st13" r="5" cx="460" cy="800" />
+        <circle class="st13" r="5" cx="470" cy="800" />
         <circle class="st13" r="5" cx="460" cy="830" />
+        <circle class="st13" r="5" cx="440" cy="810" />
         <circle class="st13" r="5" cx="460" cy="860" />
-        <circle class="st13" r="5" cx="460" cy="890" />
+        <circle class="st13" r="5" cx="460" cy="880" />
+        <circle class="st13" r="5" cx="400" cy="880" />
+        <circle class="st13" r="5" cx="460" cy="920" />
+        <circle class="st13" r="5" cx="495" cy="920" />
+        <circle class="st13" r="5" cx="487" cy="890" />
+        <circle class="st13" r="5" cx="505" cy="890" />
         <circle class="st13" r="5" cx="460" cy="920" />
         <circle class="st13" r="5" cx="460" cy="950" />
         <circle class="st13" r="5" cx="460" cy="980" />
         <circle class="st13" r="5" cx="460" cy="1010" />
+        <circle class="st13" r="5" cx="460" cy="1026" />
         <circle class="st13" r="5" cx="460" cy="1040" />
-        <circle class="st13" r="5" cx="460" cy="1070" />
-        <circle class="st13" r="5" cx="460" cy="1100" />
-        <circle class="st13" r="5" cx="460" cy="1140" />
-        <circle class="st13" r="5" cx="460" cy="1170" />
-        <circle class="st13" r="5" cx="460" cy="1200" />
-        <circle class="st13" r="5" cx="460" cy="1230" />
-        <circle class="st13" r="5" cx="460" cy="1260" />
-        <circle class="st13" r="5" cx="460" cy="1290" />
-        <circle class="st13" r="5" cx="460" cy="1320" />
-        <circle class="st13" r="5" cx="460" cy="1350" />
-        <circle class="st13" r="5" cx="460" cy="1380" />
-        <circle class="st13" r="5" cx="460" cy="1410" />
+        <circle class="st13" r="5" cx="330" cy="1026" />
+        <circle class="st13" r="5" cx="408" cy="1026" />
+        <circle class="st13" r="5" cx="408" cy="1040" />
+        <circle class="st13" r="5" cx="408" cy="1075" />
+        <circle class="st13" r="5" cx="350" cy="1075" />
+        <circle class="st13" r="5" cx="460" cy="1055" />
+        <circle class="st13" r="5" cx="520" cy="1055" />
+        <circle class="st13" r="5" cx="460" cy="1080" />
+        <circle class="st13" r="5" cx="520" cy="1100" />
 
 </g>
 </svg>

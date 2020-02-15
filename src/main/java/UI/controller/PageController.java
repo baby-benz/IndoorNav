@@ -7,6 +7,21 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PageController {
 
+    @RequestMapping(value = "/drawRoute", method = RequestMethod.GET)
+    public @ResponseBody
+    Integer drawRoute(@RequestParam(value = "myArray") String enc) {
+        System.out.println("13");
+        return 1;
+    }
+
+    @RequestMapping(value = "/sendinfo", method = RequestMethod.GET)
+    public @ResponseBody
+    Integer[] sendinfo(@RequestParam(value = "mineArray[]") String[] info) {
+        System.out.println(info[0] + ' ' + info[1]);
+        Integer[] array = new Integer[2];
+        return new Integer[2];
+    }
+
     @RequestMapping(value = "/floor1", method = RequestMethod.GET)
     public String Floor1(String floor1, Model model) {
         model.addAttribute("floor1", floor1);
