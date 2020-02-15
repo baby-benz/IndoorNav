@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StarGates.iml" filepath="$PROJECT_DIR$/StarGates.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IndoorNav.iml" filepath="$PROJECT_DIR$/IndoorNav.iml" />
     </modules>
   </component>
 </project>
