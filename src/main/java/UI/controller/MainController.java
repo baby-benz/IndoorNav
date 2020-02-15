@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
     @GetMapping("/")
-    public String mainForm(@RequestParam(name = "name", required = false, defaultValue = "World") String test, Model model) {
-        model.addAttribute("test", test);
-        return "test";    }
+    public String mainForm(@RequestParam(name = "name", required = false, defaultValue = "World") String floor1, Model model) {
+        model.addAttribute("floor1", floor1);
+        return "floor1";    }
 
 }
