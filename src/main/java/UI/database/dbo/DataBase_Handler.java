@@ -1,5 +1,6 @@
 package UI.database.dbo;
 
+import UI.database.Entity.Line.Line;
 import UI.database.Entity.Point.Point;
 import org.sqlite.JDBC;
 import java.sql.*;
@@ -10,7 +11,7 @@ public class DataBase_Handler {
 
     // Константа, в которой хранится адрес подключения
     private static final String CON_STR =
-            "jdbc:sqlite:C:\\Users\\User\\Desktop\\database\\locator.db";
+            "jdbc:sqlite:C:\\JavaProject\\database\\locator.db";
 
     private static DataBase_Handler instance = null;
 
@@ -28,6 +29,8 @@ public class DataBase_Handler {
     public void close() throws SQLException {
         this.connection.close();
     }
+
+
 
     public List<Point> getAllPoint() {
 
@@ -74,7 +77,6 @@ public class DataBase_Handler {
         }
     }
 
-
 //    // Удаление продукта по id
 //        public void deleteProduct(int id) {
 //            try (PreparedStatement statement = this.connection.prepareStatement(
@@ -87,6 +89,49 @@ public class DataBase_Handler {
 //            }
 //    }
 
+
+
+    public List<Line> getAllLines() {
+
+        // Statement используется для того, чтобы выполнить sql-запрос
+        try (Statement statement = this.connection.createStatement()) {
+
+            List<Line> lines = new ArrayList<Line>();
+
+
+            ResultSet resultSet = statement
+                    .executeQuery("SELECT pointID1, pointID2 FROM line");
+
+            while (resultSet.next()) {
+                lines.add(new Line(resultSet.getInt("pID1"),
+                        resultSet.getInt("pID2")));
+            }
+
+            return lines;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Если произошла ошибка - возвращаем пустую коллекцию
+            return Collections.emptyList();
+        }
+    }
+
+
+    // Добавление продукта в БД
+    public void addLine(Line line) {
+        // Создадим подготовленное выражение, чтобы избежать SQL-инъекций
+        try (PreparedStatement statement = this.connection.prepareStatement(
+                "INSERT INTO line(pointID1, pointID2) " +
+                        "VALUES(?, ?)")) {
+            statement.setObject(1, line.pID1);
+            statement.setObject(2, line.pID2);
+
+            // Выполняем запрос
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
